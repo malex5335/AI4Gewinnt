@@ -15,12 +15,12 @@ public class Kernspiel {
 	int siegZahl;
 
 	public Kernspiel() {
+		setSiegZahl(4);
 		setAnzahlReihen(6);
 		setAnzahlSpalten(7);
-		setSteine(new Eigentuemer[getAnzahlReihen()][getAnzahlSpalten()]);
-		setSpieler(SPIELER_1);
-		setSiegZahl(4);
 		setGewinner(NIEMAND);
+		setSpieler(SPIELER_1);
+		setSteine(new Eigentuemer[getAnzahlReihen()][getAnzahlSpalten()]);
 	}
 	public void setzeStein(int spalte) throws PositionNichtVerfuegbarException {
 		if(!getGewinner().equals(NIEMAND))
