@@ -51,31 +51,24 @@ public class Kernspiel {
 	}
 
 	private Eigentuemer pruefeGewinner() {
-		if( pruefeJeFeld()) {
-			return getSpieler();
+		for(var x = 1; x <= getAnzahlReihen(); x++) {
+			for(var y = 1; y <= getAnzahlSpalten(); y++) {
+				if (pruefeRichtung(x, y, 1, 1) ||
+						pruefeRichtung(x, y, -1, 1) ||
+						pruefeRichtung(x, y, -1, -1) ||
+						pruefeRichtung(x, y, 1, -1) ||
+						pruefeRichtung(x, y, 0, 1) ||
+						pruefeRichtung(x, y, 0, -1) ||
+						pruefeRichtung(x, y, 1, 0) ||
+						pruefeRichtung(x, y, -1, 0)) {
+					return getSpieler();
+				}
+			}
 		}
 		return NIEMAND;
 	}
 
-	private boolean pruefeJeFeld() {
-		for(var x = 1; x <= getAnzahlReihen(); x++) {
-			for(var y = 1; y <= getAnzahlSpalten(); y++) {
-				if (pruefeGruppe(x, y, 1, 1) ||
-						pruefeGruppe(x, y, -1, 1) ||
-						pruefeGruppe(x, y, -1, -1) ||
-						pruefeGruppe(x, y, 1, -1) ||
-						pruefeGruppe(x, y, 0, 1) ||
-						pruefeGruppe(x, y, 0, -1) ||
-						pruefeGruppe(x, y, 1, 0) ||
-						pruefeGruppe(x, y, -1, 0)) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-
-	private boolean pruefeGruppe(int baseX, int baseY, int xUp, int yUp) {
+	private boolean pruefeRichtung(int baseX, int baseY, int xUp, int yUp) {
 		var anzahl = 0;
 		while (baseX >= 1 && baseY >= 1) {
 			try {
